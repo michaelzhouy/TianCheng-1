@@ -7,7 +7,7 @@ import pandas as pd
 import numpy as np
 from itertools import combinations
 import os
-import geohash
+import pygeohash
 import warnings
 
 warnings.filterwarnings('ignore')
@@ -208,6 +208,7 @@ def extract_feat(data_frame):
 
     for rv in combinations(relate_pair, 2):
         print(f'waiting for group pair features of {rv} ...')
+        rv = list(rv)
         rv2 = '_'.join(rv)
         sample_data = data_frame[['UID'] + list(rv)].drop_duplicates()
         group_data = data_group_pair(data_frame, rv)
@@ -237,7 +238,7 @@ def extract_feat(data_frame):
 
 
 if __name__ == '__main__':
-    data_path = './'
+    data_path = './01-data/'
     operation_train = pd.read_csv(open(data_path+'operation_train_new.csv', encoding='utf8'))
     transaction_train = pd.read_csv(open(data_path+'transaction_train_new.csv', encoding='utf8'))
     tag_train = pd.read_csv(open(data_path+'tag_train_new.csv', encoding='utf8'))
@@ -282,5 +283,3 @@ if __name__ == '__main__':
         os.mkdir('gen_data')
     train[features + ['Tag']].to_csv('./gen_data/juz_train_data.csv', index=False)
     valid[features].to_csv('./gen_data/juz_test_data.csv', index=False)
-
-
