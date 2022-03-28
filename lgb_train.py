@@ -79,7 +79,7 @@ def sub_on_line(train_, valid_, doc_path, is_shuffle=True):
         train_pred = clf.predict(valid_x, num_iteration=clf.best_iteration)
         tmp_score = tpr_weight_function(valid_y, train_pred)
         res_e.append(tmp_score)
-        print(f'Orange custom score: {tmp_score}')
+        print(f'Origin custom score: {tmp_score}')
     valid_['Tag'] = np.mean(sub_preds, axis=1)
 
     valid_res = pd.read_csv(open('../01-data/' + '提交样例.csv', encoding='utf8'))[['UID']]
