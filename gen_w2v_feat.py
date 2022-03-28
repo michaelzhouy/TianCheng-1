@@ -49,8 +49,8 @@ if __name__ == '__main__':
     transaction_train = pd.read_csv(open(data_path+'transaction_train_new.csv', encoding='utf8'))
     tag_train = pd.read_csv(open(data_path+'tag_train_new.csv', encoding='utf8'))
 
-    operation_round1 = pd.read_csv(open(data_path+'test_operation_round1.csv', encoding='utf8'))
-    transaction_round1 = pd.read_csv(open(data_path+'test_transaction_round1.csv', encoding='utf8'))
+    operation_round1 = pd.read_csv(open(data_path+'operation_round1_new.csv', encoding='utf8'))
+    transaction_round1 = pd.read_csv(open(data_path+'transaction_round1_new.csv', encoding='utf8'))
     tag_b = pd.read_csv(open(data_path+'提交样例.csv', encoding='utf8'))[['UID']]
     print('Successed load in train and test data.')
 
