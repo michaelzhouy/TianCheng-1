@@ -82,7 +82,7 @@ def sub_on_line(train_, valid_, doc_path, is_shuffle=True):
         print(f'Orange custom score: {tmp_score}')
     valid_['Tag'] = np.mean(sub_preds, axis=1)
 
-    valid_res = pd.read_csv(open(data_path+'test_tag_r1.csv', encoding='utf8'))[['UID']]
+    valid_res = pd.read_csv(open('../01-data/' + '提交样例.csv', encoding='utf8'))[['UID']]
     valid_res = valid_res.merge(valid_[['UID', 'Tag']], how='left', on='UID')
     valid_res.to_csv(doc_path, index=False)
     print(res_e)
