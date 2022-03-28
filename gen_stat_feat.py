@@ -238,7 +238,7 @@ def extract_feat(data_frame):
 
 
 if __name__ == '__main__':
-    data_path = './01-data/'
+    data_path = '../01-data/'
     operation_train = pd.read_csv(open(data_path+'operation_train_new.csv', encoding='utf8'))
     transaction_train = pd.read_csv(open(data_path+'transaction_train_new.csv', encoding='utf8'))
     tag_train = pd.read_csv(open(data_path+'tag_train_new.csv', encoding='utf8'))
