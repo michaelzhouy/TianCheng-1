@@ -245,7 +245,7 @@ if __name__ == '__main__':
 
     operation_round1 = pd.read_csv(open(data_path+'operation_round1_new.csv', encoding='utf8'))
     transaction_round1 = pd.read_csv(open(data_path+'transaction_round1_new.csv', encoding='utf8'))
-    tag_valid = pd.read_csv(open(data_path+'test_tag_r1.csv', encoding='utf8'))[['UID']]
+    tag_valid = pd.read_csv(open(data_path+'提交样例.csv', encoding='utf8'))[['UID']]
     print('Successed load in train and test data.')
     
     transaction_train['mode'] = 'transaction'
