@@ -263,8 +263,8 @@ if __name__ == '__main__':
     all_data['nweek_day'] = all_data['day'].apply(lambda x: x % 7)
     all_data['version'] = all_data.version.fillna('0.0.0')
     all_data['nhour'] = all_data['time'].apply(lambda x: int(x[:2]))
-    all_data['longitude'] = all_data['geo_code'].apply(lambda x: geohash.decode(x)[0] if isinstance(x, str) else np.nan)
-    all_data['latitude'] = all_data['geo_code'].apply(lambda x: geohash.decode(x)[1] if isinstance(x, str) else np.nan)
+    all_data['longitude'] = all_data['geo_code'].apply(lambda x: pygeohash.decode(x)[0] if isinstance(x, str) else np.nan)
+    all_data['latitude'] = all_data['geo_code'].apply(lambda x: pygeohash.decode(x)[1] if isinstance(x, str) else np.nan)
     all_data['ratio'] = all_data['trans_amt'] / all_data['bal']
 
     data_var = extract_feat(all_data)
