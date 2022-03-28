@@ -7,6 +7,7 @@ import pandas as pd
 import warnings
 from gensim.models import Word2Vec
 import multiprocessing
+import os
 
 warnings.filterwarnings('ignore')
 
