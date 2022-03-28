@@ -44,14 +44,14 @@ def w2v_feat(data_frame, feat, mode):
 
 if __name__ == '__main__':
     L = 10
-    data_path = './'
+    data_path = '../01-data/'
     operation_train = pd.read_csv(open(data_path+'operation_train_new.csv', encoding='utf8'))
     transaction_train = pd.read_csv(open(data_path+'transaction_train_new.csv', encoding='utf8'))
     tag_train = pd.read_csv(open(data_path+'tag_train_new.csv', encoding='utf8'))
 
     operation_round1 = pd.read_csv(open(data_path+'test_operation_round1.csv', encoding='utf8'))
     transaction_round1 = pd.read_csv(open(data_path+'test_transaction_round1.csv', encoding='utf8'))
-    tag_b = pd.read_csv(open(data_path+'test_tag_r1.csv', encoding='utf8'))[['UID']]
+    tag_b = pd.read_csv(open(data_path+'提交样例.csv', encoding='utf8'))[['UID']]
     print('Successed load in train and test data.')
 
     transaction_train['mode'] = 'transaction'
@@ -77,5 +77,7 @@ if __name__ == '__main__':
 
     features = [i for i in drop_train.columns if i in drop_valid.columns]
     print('features num: ', len(features) - 1)
+    if not os.path.exists('gen_data'):
+        os.mkdir('gen_data')
     train[features + ['Tag']].to_csv('./gen_data/juz_train_w2v.csv', index=False)
     valid[features].to_csv('./gen_data/juz_test_w2v.csv', index=False)
