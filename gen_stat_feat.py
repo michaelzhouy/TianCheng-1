@@ -92,16 +92,14 @@ def extract_feat(data_frame):
 
     time_period = [-1, 8, 12, 15, 24]
     for tp in range(4):
-        data_tmp[f'uid_time_period_{tp}_cnt'] = \
-            data_frame[((data_frame['nhour'] > time_period[tp]) &
-                        (data_frame['nhour'] <= time_period[tp+1]))].groupby('UID')['day'].count()
+        data_tmp[f'uid_time_period_{tp}_cnt'] = data_frame[((data_frame['nhour'] > time_period[tp]) & (data_frame['nhour'] <= time_period[tp + 1]))].groupby('UID')['day'].count()
 
     # UID关联的自身属性
     nunique_var = ['acc_id1', 'acc_id2', 'acc_id3', 'amt_src1', 'amt_src2', 'bal', 'channel', 'code1', 'code2', 'day',
                    'device1', 'device2', 'device_code1', 'device_code2', 'device_code3', 'geo_code', 'ip1', 'ip1_sub',
                    'ip2', 'ip2_sub', 'mac1', 'mac2', 'market_code', 'market_type', 'merchant', 'mode', 'nweek_day',
-                   'os', 'success', 'trans_amt', 'trans_type1', 'trans_type2', 'version', 'wifi', 'nhour', 'longitude'
-                   , 'latitude']
+                   'os', 'success', 'trans_amt', 'trans_type1', 'trans_type2', 'version', 'wifi', 'nhour', 'longitude',
+                   'latitude']
 
     for nv in nunique_var:
         data_tmp[f'uid_{nv}_nunique'] = data_frame.groupby('UID')[nv].nunique()
@@ -210,7 +208,7 @@ def extract_feat(data_frame):
         print(f'waiting for group pair features of {rv} ...')
         rv = list(rv)
         rv2 = '_'.join(rv)
-        sample_data = data_frame[['UID'] + list(rv)].drop_duplicates()
+        sample_data = data_frame[['UID'] + rv].drop_duplicates()
         group_data = data_group_pair(data_frame, rv)
         sample_data = sample_data.merge(group_data, on=rv, how='left')
 
@@ -239,13 +237,13 @@ def extract_feat(data_frame):
 
 if __name__ == '__main__':
     data_path = '../01-data/'
-    operation_train = pd.read_csv(open(data_path+'operation_train_new.csv', encoding='utf8'))
-    transaction_train = pd.read_csv(open(data_path+'transaction_train_new.csv', encoding='utf8'))
-    tag_train = pd.read_csv(open(data_path+'tag_train_new.csv', encoding='utf8'))
+    operation_train = pd.read_csv(open(data_path + 'operation_train_new.csv', encoding='utf8'))
+    transaction_train = pd.read_csv(open(data_path+  'transaction_train_new.csv', encoding='utf8'))
+    tag_train = pd.read_csv(open(data_path + 'tag_train_new.csv', encoding='utf8'))
 
-    operation_round1 = pd.read_csv(open(data_path+'operation_round1_new.csv', encoding='utf8'))
-    transaction_round1 = pd.read_csv(open(data_path+'transaction_round1_new.csv', encoding='utf8'))
-    tag_valid = pd.read_csv(open(data_path+'提交样例.csv', encoding='utf8'))[['UID']]
+    operation_round1 = pd.read_csv(open(data_path + 'operation_round1_new.csv', encoding='utf8'))
+    transaction_round1 = pd.read_csv(open(data_path + 'transaction_round1_new.csv', encoding='utf8'))
+    tag_valid = pd.read_csv(open(data_path + '提交样例.csv', encoding='utf8'))[['UID']]
     print('Successed load in train and test data.')
     
     transaction_train['mode'] = 'transaction'
