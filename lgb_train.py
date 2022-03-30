@@ -91,6 +91,6 @@ def sub_on_line(train_, valid_, doc_path, is_shuffle=True):
 
 if __name__ == '__main__':
     data_path = './'
-    train_stat = pd.read_csv(open(data_path+'gen_data/juz_train_data.csv'))
-    valid_stat = pd.read_csv(open(data_path+'gen_data/juz_test_data.csv'))
+    train_stat = pd.read_csv(open(data_path + 'gen_data/juz_train_data.csv'))
+    valid_stat = pd.read_csv(open(data_path + 'gen_data/juz_test_data.csv'))
     sub_on_line(train_stat, valid_stat, './submit_a_lgb.csv')
